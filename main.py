@@ -1,90 +1,68 @@
 import pygame
-import sys
 import math
 
 from province import Province
+from world import World
+from nation import Nation
 
-# Initialize Pygame
-pygame.init()
-
-# Set up the screen
-WIDTH, HEIGHT = 800, 600
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Hexagon Grid")
-
-# Define colors
+# COLORS
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+RED = (200, 0, 0)
+GREEN = (0, 200, 0)
+L_GREEN = (50, 255, 50)
+L_RED = (255, 50, 50)
 
-# Define hexagon size and spacing
-HEX_SIZE = 30  # adjust as needed
-HEX_SPACING = 2  # adjust as needed
+HEX_DIAMETER = 42
 
-provinces = {}
+def init_provinces(cols, rows, nation):
+  provinces = []
+  start_x, start_y = 100, 100
+  for row in range(rows):
+    for col in range(cols):
+      # Calculate position of hexagon center
+      x = start_x + col * HEX_DIAMETER * 1.5
+      y = start_y + row * HEX_DIAMETER * math.sqrt(3) + (col % 2) * HEX_DIAMETER * math.sqrt(3) / 2
+      province = Province((x, y), nation, 10, 100)
+      provinces.append(province)
 
-def draw_hexagon(x, y):
-    """Draw a hexagon at the given position."""
-    points = []
-    for i in range(6):
-        angle_deg = 60 * i
-        angle_rad = angle_deg * (math.pi / 180)
-        points.append((x + HEX_SIZE * math.cos(angle_rad),
-                       y + HEX_SIZE * math.sin(angle_rad)))
-    pygame.draw.polygon(screen, BLACK, points, HEX_SPACING)
+  return provinces
 
-def draw_hexagon_grid(rows, cols):
-    """Draw a grid of hexagons."""
-    for row in range(rows):
-        for col in range(cols):
-            # Calculate position of hexagon center
-            x = col * HEX_SIZE * 1.5
-            y = row * HEX_SIZE * math.sqrt(3) + (col % 2) * HEX_SIZE * math.sqrt(3) / 2
-            draw_hexagon(x, y)
+def render(screen, hexagons):
+  screen.fill(BLACK)
+  for province in hexagons:
+    province.render(screen, RED)
+  
 
-    provinces[(row, col)] = Province(population=1000, gold=100)  # Example population and gold values
+  pygame.display.flip()
 
 
-def display_province_info(province, x, y):
-    font = pygame.font.Font(None, 24)
-    population_text = font.render(f"Population: {province.population}", True, BLACK)
-    gold_text = font.render(f"Gold: {province.gold}", True, BLACK)
-    screen.blit(population_text, (x, y))
-    screen.blit(gold_text, (x, y + 30))
 
-# Main loop
 def main():
-    running = True
-    selected_province = None
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:  # Left mouse button
-                    # Check if mouse click is within a hexagon
-                    mouse_pos = pygame.mouse.get_pos()
-                    for pos, province in provinces.items():
-                        x = pos[1] * HEX_SIZE * 1.5
-                        y = pos[0] * HEX_SIZE * math.sqrt(3) + (pos[1] % 2) * HEX_SIZE * math.sqrt(3) / 2
-                        if math.dist(mouse_pos, (x, y)) < HEX_SIZE:
-                            selected_province = province
-                            break
+  """Main function"""
+  pygame.init()
+  screen = pygame.display.set_mode((1080, 720))
+  pygame.display.set_caption("HexaPolitics")
+  clock = pygame.time.Clock()
 
-        # Fill the background with white
-        screen.fill(WHITE)
+  world = World()
+  n1 = Nation("We", GREEN, L_GREEN)
+  n2 = Nation("Enemy", RED, L_RED)
+  
+  world.provinces = init_provinces(3,3, n2)
+  
+  is_playing = True
+  
+  while is_playing:
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        is_playing = False
 
-        # Draw the hexagon grid
-        draw_hexagon_grid(9, 16)  # Adjust the number of rows and columns as needed
-
-        # Display selected province info
-        if selected_province:
-            display_province_info(selected_province, WIDTH - 200, 50)
-
-        # Update the display
-        pygame.display.flip()
-
-    pygame.quit()
-    sys.exit()
+    render(screen, world.provinces)
+    
+    clock.tick(50)
+  
+  pygame.display.quit()
 
 if __name__ == "__main__":
     main()
