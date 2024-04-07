@@ -13,16 +13,17 @@ GREEN = (0, 200, 0)
 L_GREEN = (50, 255, 50)
 L_RED = (255, 50, 50)
 
-HEX_DIAMETER = 42
+
 
 def init_provinces(cols, rows, nation):
+  hex_diameter = Province.diameter + 2
   provinces = []
   start_x, start_y = 100, 100
-  for row in range(rows):
-    for col in range(cols):
+  for col in range(cols):
+    for row in range(rows + col % 2):  # Add extra hexagon for odd rows:
       # Calculate position of hexagon center
-      x = start_x + col * HEX_DIAMETER * 1.5
-      y = start_y + row * HEX_DIAMETER * math.sqrt(3) + (col % 2) * HEX_DIAMETER * math.sqrt(3) / 2
+      y = start_y + col * hex_diameter * 1.5
+      x = start_x + row * hex_diameter * math.sqrt(3) - (col % 2) * hex_diameter * math.sqrt(3) / 2
       province = Province((x, y), nation, 10, 100)
       provinces.append(province)
 
@@ -31,7 +32,7 @@ def init_provinces(cols, rows, nation):
 def render(screen, hexagons):
   screen.fill(BLACK)
   for province in hexagons:
-    province.render(screen, RED)
+    province.render(screen)
   
 
   pygame.display.flip()
@@ -49,7 +50,9 @@ def main():
   n1 = Nation("We", GREEN, L_GREEN)
   n2 = Nation("Enemy", RED, L_RED)
   
-  world.provinces = init_provinces(3,3, n2)
+  world.provinces = init_provinces(5,8, n2)
+  my_province = Province((427.35760263051776,163.0), n1, 200, 50)
+  world.provinces[13] = my_province
   
   is_playing = True
   
