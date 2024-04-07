@@ -18,13 +18,15 @@ L_RED = (255, 50, 50)
 def init_provinces(cols, rows, nation):
   hex_diameter = Province.diameter + 2
   provinces = []
-  start_x, start_y = 100, 100
+  start_x, start_y = 100, 60
   for col in range(cols):
     for row in range(rows + col % 2):  # Add extra hexagon for odd rows:
       # Calculate position of hexagon center
       y = start_y + col * hex_diameter * 1.5
       x = start_x + row * hex_diameter * math.sqrt(3) - (col % 2) * hex_diameter * math.sqrt(3) / 2
-      province = Province((x, y), nation, 10, 100)
+      province = Province(nation, 10, 100)
+      province.set_coordinates(col, row)
+      province.set_position(x, y)
       provinces.append(province)
 
   return provinces
@@ -51,7 +53,7 @@ def main():
   n2 = Nation("Enemy", RED, L_RED)
   
   world.provinces = init_provinces(5,8, n2)
-  my_province = Province((427.35760263051776,163.0), n1, 200, 50)
+  my_province = Province(n1, 200, 50)
   world.provinces[13] = my_province
   
   is_playing = True
