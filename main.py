@@ -7,24 +7,12 @@ from world import World
 from nation import Nation
 
 
-# COLORS
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (200, 0, 0)
-GREEN = (0, 200, 0)
-L_GREEN = (50, 255, 50)
-L_RED = (255, 50, 50)
-
-
-
 def render(screen, hexagons):
   screen.fill(BLACK)
   for province in hexagons:
     province.render(screen)
   
-
   pygame.display.flip()
-
 
 
 def main():
@@ -48,6 +36,17 @@ def main():
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
         is_playing = False
+
+    # Get mouse position
+    mouse_pos = pygame.mouse.get_pos()
+
+    # Check if mouse is over any province
+    #TODO optimize this monstrosity
+    for province in world.provinces:
+      if province.is_mouse_over(mouse_pos):
+        province.is_highlighted = True
+      else:
+        province.is_highlighted = False
 
     render(screen, world.provinces)
     
