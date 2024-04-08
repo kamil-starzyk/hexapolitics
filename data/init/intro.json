@@ -1,0 +1,283 @@
+{
+  "world" : {
+    "nations" : [
+      {
+        "name": "Sea",
+        "color": [0, 105, 148],
+        "provinces": [
+          {
+            "coordinates": [0,0],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          },
+          {
+            "coordinates": [1,0],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          },
+          {
+            "coordinates": [2,0],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          },
+          {
+            "coordinates": [3,0],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          },
+          {
+            "coordinates": [4,0],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          },
+          {
+            "coordinates": [5,0],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          },
+          {
+            "coordinates": [6,0],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          },
+          {
+            "coordinates": [7,0],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          },
+          {
+            "coordinates": [0,1],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          },
+          {
+            "coordinates": [5,1],
+            "terrain": "sea",
+            "population": 0,
+            "gold": 0
+          }
+        ]
+      },
+      {
+        "name": "Aufurbenau",
+        "color": [200, 0, 0],
+        "provinces": [
+          {
+            "coordinates": [1,1],
+            "terrain": "lowland",
+            "population": 1000,
+            "gold": 2200
+          },
+          {
+            "coordinates": [2,1],
+            "terrain": "plateau",
+            "population": 3250,
+            "gold": 1500
+          },
+          {
+            "coordinates": [3,1],
+            "terrain": "highland",
+            "population": 4100,
+            "gold": 1800
+          },
+          {
+            "coordinates": [0,2],
+            "terrain": "mountain",
+            "population": 4800,
+            "gold": 2700
+          },
+          {
+            "coordinates": [1,2],
+            "terrain": "lowland",
+            "population": 1400,
+            "gold": 3100
+          },
+          {
+            "coordinates": [2,2],
+            "terrain": "plateau",
+            "population": 2600,
+            "gold": 2000
+          },
+          {
+            "coordinates": [0,3],
+            "terrain": "mountain",
+            "population": 4800,
+            "gold": 2500
+          },
+          {
+            "coordinates": [1,3],
+            "terrain": "lowland",
+            "population": 1800,
+            "gold": 2600
+          },
+          {
+            "coordinates": [2,3],
+            "terrain": "plateau",
+            "population": 2700,
+            "gold": 2100
+          },
+          {
+            "coordinates": [0,4],
+            "terrain": "mountain",
+            "population": 5300,
+            "gold": 2900
+          },
+          {
+            "coordinates": [1,4],
+            "terrain": "lowland",
+            "population": 2000,
+            "gold": 2800
+          },
+          {
+            "coordinates": [2,4],
+            "terrain": "plateau",
+            "population": 2900,
+            "gold": 2200
+          }
+        ]
+      },
+      {
+        "name": "Roland",
+        "color": [0, 200, 0],
+        "provinces": [
+          {
+            "coordinates": [4,1],
+            "terrain": "lowland",
+            "population": 2500,
+            "gold": 1200
+          },
+          {
+            "coordinates": [3,2],
+            "terrain": "plateau",
+            "population": 3100,
+            "gold": 900
+          },
+          {
+            "coordinates": [4,2],
+            "terrain": "highland",
+            "population": 3800,
+            "gold": 1000
+          },
+          {
+            "coordinates": [3,3],
+            "terrain": "lowland",
+            "population": 2900,
+            "gold": 1100
+          },
+          {
+            "coordinates": [4,3],
+            "terrain": "plateau",
+            "population": 3400,
+            "gold": 950
+          },
+          {
+            "coordinates": [5,3],
+            "terrain": "highland",
+            "population": 4200,
+            "gold": 1050
+          },
+          {
+            "coordinates": [3,4],
+            "terrain": "lowland",
+            "population": 3100,
+            "gold": 1150
+          },
+          {
+            "coordinates": [4,4],
+            "terrain": "plateau",
+            "population": 3600,
+            "gold": 1000
+          },
+          {
+            "coordinates": [5,4],
+            "terrain": "highland",
+            "population": 4300,
+            "gold": 1100
+          },
+          {
+            "coordinates": [6,4],
+            "terrain": "lowland",
+            "population": 3300,
+            "gold": 1200
+          }
+        ]
+      },
+      {
+        "name": "Vus",
+        "color": [0, 0, 200],
+        "provinces": [
+          {
+            "coordinates": [6,1],
+            "terrain": "lowland",
+            "population": 3500,
+            "gold": 800
+          },
+          {
+            "coordinates": [7,1],
+            "terrain": "plateau",
+            "population": 3800,
+            "gold": 950
+          },
+          {
+            "coordinates": [8,1],
+            "terrain": "highland",
+            "population": 4100,
+            "gold": 1000
+          },
+          {
+            "coordinates": [5,2],
+            "terrain": "lowland",
+            "population": 3300,
+            "gold": 800
+          },
+          {
+            "coordinates": [6,2],
+            "terrain": "plateau",
+            "population": 3600,
+            "gold": 900
+          },
+          {
+            "coordinates": [7,2],
+            "terrain": "highland",
+            "population": 3900,
+            "gold": 950
+          },
+          {
+            "coordinates": [6,3],
+            "terrain": "lowland",
+            "population": 3200,
+            "gold": 750
+          },
+          {
+            "coordinates": [7,3],
+            "terrain": "plateau",
+            "population": 3500,
+            "gold": 850
+          },
+          {
+            "coordinates": [8,3],
+            "terrain": "highland",
+            "population": 3800,
+            "gold": 950
+          },
+          {
+            "coordinates": [7,4],
+            "terrain": "lowland",
+            "population": 3100,
+            "gold": 700
+          }
+        ]
+      }
+      
+    ]
+  }
+}

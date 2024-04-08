@@ -1,9 +1,11 @@
 import pygame
 import math
 
+from myjson import MyJson
 from province import Province
 from world import World
 from nation import Nation
+
 
 # COLORS
 WHITE = (255, 255, 255)
@@ -48,13 +50,13 @@ def main():
   pygame.display.set_caption("HexaPolitics")
   clock = pygame.time.Clock()
 
-  world = World()
-  n1 = Nation("We", GREEN, L_GREEN)
-  n2 = Nation("Enemy", RED, L_RED)
-  
-  world.provinces = init_provinces(5,8, n2)
-  my_province = Province(n1, 200, 50)
-  world.provinces[13] = my_province
+  data = MyJson.load_json("data/init/intro.json")
+  nations = data["world"]
+  world = World.from_dict(nations)
+
+  start_x, start_y = 100, 60
+  for province in world.provinces:
+    province.set_position(start_x, start_y)
   
   is_playing = True
   
