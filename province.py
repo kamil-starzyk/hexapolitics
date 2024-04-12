@@ -47,6 +47,7 @@ class Province:
   def set_nation(self, nation):
     self.nation = nation
 
+
   def to_dict(self):
     return {
       "name": self.name,
