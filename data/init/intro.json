@@ -65,7 +65,8 @@
             "population": 0,
             "gold": 0
           }
-        ]
+        ],
+        "controlled_by_player": false
       },
       {
         "name": "Aufurbenau",
@@ -143,7 +144,8 @@
             "population": 2900,
             "gold": 2200
           }
-        ]
+        ],
+        "controlled_by_player": false
       },
       {
         "name": "Roland",
@@ -209,7 +211,8 @@
             "population": 3300,
             "gold": 1200
           }
-        ]
+        ],
+        "controlled_by_player": true
       },
       {
         "name": "Vus",
@@ -275,7 +278,8 @@
             "population": 3100,
             "gold": 700
           }
-        ]
+        ],
+        "controlled_by_player": false
       }
       
     ]

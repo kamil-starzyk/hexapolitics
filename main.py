@@ -8,8 +8,9 @@ from nation import Nation
 
 BLACK = (0,0,0)
 
-def render(screen, hexagons):
-  #screen.fill(BLACK)
+def render(screen, hexagons, is_highlighted):
+  if not is_highlighted:
+    screen.fill(BLACK)
   for province in hexagons:
     province.render(screen)
   
@@ -41,8 +42,8 @@ def render_province_data(screen, font, highlighted_province):
     screen.blit(gold_text, (frame_x + text_padding, frame_y + 60 + text_padding))
     screen.blit(terrain_text, (frame_x + text_padding, frame_y + 90 + text_padding))
     
-    
     pygame.display.flip()
+  
 
 
 def main():
@@ -73,14 +74,16 @@ def main():
 
     # Check if mouse is over any province
     #TODO optimize this monstrosity
+    is_any_province_highlighted = False
     for province in world.provinces:
       if province.is_mouse_over(mouse_pos):
         province.is_highlighted = True
         render_province_data(screen, font, province)
+        is_any_province_highlighted = True
       else:
         province.is_highlighted = False
 
-    render(screen, world.provinces) 
+    render(screen, world.provinces, is_any_province_highlighted) 
     
     clock.tick(50)
   
