@@ -6,13 +6,20 @@ from province import Province
 from world import World
 from nation import Nation
 
+pygame.init()
+screen = pygame.display.set_mode((1080, 720))
+pygame.display.set_caption("HexaPolitics")
+clock = pygame.time.Clock()
 BLACK = (0,0,0)
+font = pygame.font.Font(None, 24)
 
-def render(screen, hexagons, is_highlighted):
+def render(screen, hexagons, player_nation, is_highlighted):
   if not is_highlighted:
     screen.fill(BLACK)
   for province in hexagons:
     province.render(screen)
+
+  render_nation_data(screen, font, player_nation)
   
   pygame.display.flip()
 
@@ -44,19 +51,42 @@ def render_province_data(screen, font, highlighted_province):
     
     pygame.display.flip()
   
+def render_nation_data(screen, font, player_nation):
+    """Renders nation data in a frame at the bottom of the screen"""
+    frame_width = screen.get_width()
+    frame_height = 150
+    frame_x = 0
+    frame_y = screen.get_height() - frame_height
+    
+    pygame.draw.rect(screen, (200, 200, 200), (frame_x, frame_y, frame_width, frame_height))
+    
+    text_color = (0, 0, 0)
+    text_padding = 10
+    
+    # Render nation data
+    nation_name_text = font.render(f"Nation: {player_nation.name}", True, text_color)
 
+    number_of_provinces = len(player_nation.provinces)
+    number_of_provinces_text = font.render(f"Number of provinces: {number_of_provinces}", True, text_color)
+
+
+    # Add more information as needed
+    
+    # Blit text to screen
+    screen.blit(nation_name_text, (frame_x + text_padding, frame_y + text_padding))
+    screen.blit(number_of_provinces_text, (frame_x + text_padding, frame_y + 30 + text_padding))
+    # Blit more text as needed
+    
+    pygame.display.flip()
 
 def main():
   """Main function"""
-  pygame.init()
-  screen = pygame.display.set_mode((1080, 720))
-  pygame.display.set_caption("HexaPolitics")
-  clock = pygame.time.Clock()
-  font = pygame.font.Font(None, 24)
-
+  
   data = MyJson.load_json("data/init/intro.json")
   nations = data["world"]
   world = World.from_dict(nations)
+
+  player_nation = world.nations[2]
 
   start_x, start_y = 100, 60
   for province in world.provinces:
@@ -83,7 +113,9 @@ def main():
       else:
         province.is_highlighted = False
 
-    render(screen, world.provinces, is_any_province_highlighted) 
+    render_nation_data(screen, font, player_nation)
+
+    render(screen, world.provinces, player_nation, is_any_province_highlighted) 
     
     clock.tick(50)
   
