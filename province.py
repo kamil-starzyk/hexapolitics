@@ -3,7 +3,7 @@ import math
 
 class Province:
   radius = 40
-  def __init__(self, coordinates, terrain, population, gold,):
+  def __init__(self, coordinates, terrain, population, gold, renewable_resources={}, limited_resources={}):
     self.coordinates = coordinates
     self.screen_position = (0, 0)
     self.is_highlighted = False
@@ -11,6 +11,10 @@ class Province:
     self.terrain = terrain # lowland, plateaus, highlands, mountains, sea
     self.population = population
     self.gold = gold
+
+    self.renewable_resources = renewable_resources
+    self.limited_resources = limited_resources 
+
 
   
   def render(self, screen) -> None:
@@ -53,7 +57,9 @@ class Province:
       "name": self.name,
       "color": self.color,
       "highlight_color": self.highlight_color,
-      "provinces": [province.to_dict() for province in self.provinces]
+      "provinces": [province.to_dict() for province in self.provinces],
+      "renewable_resources": self.renewable_resources,
+      "limited_resources": self.limited_resources
     }
   
   @classmethod
@@ -62,6 +68,8 @@ class Province:
     terrain = data["terrain"]
     population = data["population"]
     gold = data["gold"]
+    renewable_resources = data.get("renewable_resources", {})
+    limited_resources = data.get("limited_resources", {})
     
-    province = cls(coordinates, terrain, population, gold)
+    province = cls(coordinates, terrain, population, gold, renewable_resources, limited_resources)
     return province
