@@ -9,7 +9,8 @@
             "coordinates": [0,0],
             "terrain": "sea",
             "population": 0,
-            "gold": 0
+            "gold": 0,
+            "resources": []
           },
           {
             "coordinates": [1,0],
@@ -203,7 +204,29 @@
             "coordinates": [5,4],
             "terrain": "highland",
             "population": 4300,
-            "gold": 1100
+            "gold": 1100,
+            "resources": [
+              {
+                "name": "Iron",
+                "description": "A metallic element",
+                "renewable": false,
+                "amount_max": 1000,
+                "amount_discovered": 200,
+                "amount_left": 999,
+                "extraction_rate": 1,
+                "recovery_rate": 0
+              },
+              {
+                "name": "Wood",
+                "description": "A fibrous material",
+                "renewable": true,
+                "amount_max": 500,
+                "amount_discovered": 300,
+                "amount_left": 200,
+                "extraction_rate": 5,
+                "recovery_rate": 2
+              }
+            ]
           },
           {
             "coordinates": [6,4],

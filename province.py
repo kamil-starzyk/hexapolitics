@@ -1,9 +1,11 @@
 import pygame
 import math
 
+from resource import Resource
+
 class Province:
   radius = 40
-  def __init__(self, coordinates, terrain, population, gold, renewable_resources={}, limited_resources={}):
+  def __init__(self, coordinates, terrain, population, gold, resources):
     self.coordinates = coordinates
     self.screen_position = (0, 0)
     self.is_highlighted = False
@@ -11,9 +13,7 @@ class Province:
     self.terrain = terrain # lowland, plateaus, highlands, mountains, sea
     self.population = population
     self.gold = gold
-
-    self.renewable_resources = renewable_resources
-    self.limited_resources = limited_resources 
+    self.resources = resources
 
 
   
@@ -58,8 +58,7 @@ class Province:
       "color": self.color,
       "highlight_color": self.highlight_color,
       "provinces": [province.to_dict() for province in self.provinces],
-      "renewable_resources": self.renewable_resources,
-      "limited_resources": self.limited_resources
+      "resources": [resource.to_dict() for resource in self.resources]
     }
   
   @classmethod
@@ -68,8 +67,8 @@ class Province:
     terrain = data["terrain"]
     population = data["population"]
     gold = data["gold"]
-    renewable_resources = data.get("renewable_resources", {})
-    limited_resources = data.get("limited_resources", {})
+    resources_list = data.get("resources", [])
+    resources = [Resource.from_dict(resource_data) for resource_data in resources_list]
     
-    province = cls(coordinates, terrain, population, gold, renewable_resources, limited_resources)
+    province = cls(coordinates, terrain, population, gold, resources)
     return province
